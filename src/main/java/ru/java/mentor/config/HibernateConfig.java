@@ -28,26 +28,18 @@ public class HibernateConfig {
 
     private Properties hibernateProperties() {
         Properties properties = new Properties();
-        /*
         properties.put("hibernate.dialect", environment.getRequiredProperty("hibernate.dialect"));
         properties.put("hibernate.show_sql", environment.getRequiredProperty("hibernate.show_sql"));
-        */
-        properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
-        properties.put("hibernate.show_sql", "true");
         return properties;
     }
 
     @Bean
     public DataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
-     /*   dataSource.setDriverClassName(environment.getProperty("hibernate.connection.driver_class"));
+        dataSource.setDriverClassName(environment.getProperty("hibernate.connection.driver_class"));
         dataSource.setUrl(environment.getProperty("hibernate.connection.url"));
         dataSource.setUsername(environment.getProperty("hibernate.connection.username"));
-        dataSource.setPassword(environment.getProperty("hibernate.connection.password"));*/
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/test?serverTimezone=UTC");
-        dataSource.setUsername("testuser");
-        dataSource.setPassword("testuser");
+        dataSource.setPassword(environment.getProperty("hibernate.connection.password"));
         return dataSource;
     }
 
