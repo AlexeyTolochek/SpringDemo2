@@ -11,10 +11,10 @@
 <h2>БД пользователей</h2><br/>
 <h2>x -> Приветствие на супер-мега сайте супер-пупер админа ${requestScope.nameUser}</h2><br/>
 
+<h2>${requestScope.message}</h2>
+
 <form method='post'>
-    <p><b>Выберите действие c пользователем</b></p>
-    <p><input name="action" type="radio" value="add" checked> Добавить
-        <input name="action" type="radio" value="edit"> Изменить</p>
+    <p><b>Данные пользователя</b></p>
 
     <table width='100%' cellspacing='0' cellpadding='4' items="${requestScope.userEdit}" var="userEdit">
         <tr>
@@ -38,10 +38,13 @@
             <td><input type='text' name='role' maxlength='50' size='20' value=  ${userEdit.role}></td>
         </tr>
     </table>
-    <input type='submit' value='Подтвердить' name='Ok'><br>
+    <p><b>Выберите действие c пользователем</b></p>
+
+    <input type='submit' value='Добвить' name='Ok' formaction="${pageContext.request.contextPath}/admin/add">
+    <input type='submit' value='Изменить' name='Ok' formaction="${pageContext.request.contextPath}/admin/update">
     <input type="hidden" name="id" value="${userEdit.id}">
 </form>
-
+<br>
 
 <table table border="1" cellspacing="0" cellpadding="2">
     <tr>
@@ -63,9 +66,14 @@
             <td>
                 <form method="get">
                     <input type="submit" value="Изменить" name="edit">
+                    <input type="hidden" name="id" value="${user.id}">
+                </form>
+                <form method="post" action="${pageContext.request.contextPath}/admin/delete">
                     <input type="submit" value="Удалить" name="delete">
                     <input type="hidden" name="id" value="${user.id}">
                 </form>
+
+
             </td>
         </tr>
     </c:forEach>

@@ -1,9 +1,9 @@
-package ru.java.mentor.factory;
+package ru.java.mentor.dao;
 
 import ru.java.mentor.model.User;
 import java.util.List;
 
-public interface DAO {
+public interface UserDao {
 
     List<User> getAllUsers();
 

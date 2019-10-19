@@ -8,15 +8,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.java.mentor.model.User;
 import ru.java.mentor.service.UserServiceInterface;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @PropertySource(value = "classpath:config.properties")
-public class RegistrationController {
+public class AuthorizationController {
     private UserServiceInterface service;
     private Environment environment;
 
     @Autowired
-    public void setUserService(UserServiceInterface service) {
+    public void setService(UserServiceInterface service) {
         this.service = service;
     }
 
@@ -25,19 +26,21 @@ public class RegistrationController {
         this.environment = environment;
     }
 
-    @GetMapping("/reg")
-    public String reg(@ModelAttribute("message") String message) {
-        return "registration";
+    @GetMapping(value = "/")
+    public String auth(@ModelAttribute("message") String message) {
+        return "index";
     }
 
-    @PostMapping("/reg")
-    public String regUser(@ModelAttribute("user")User user, Model model) {
+    @PostMapping(value = "/")
+    public String authUser(@ModelAttribute("user") User user, Model model, HttpServletRequest request) {
 
-        if (service.addUser(user)) {
-            return "redirect:/";
+       if (service.validateUser(user)) {
+            user = service.getUserByLogin(user.getLogin());
+            request.getSession().setAttribute("user", user);
+           return "redirect:/user";
         } else {
             model.addAttribute("message", environment.getRequiredProperty("invalidData"));
         }
-        return "redirect:/reg";
+        return"redirect:/";
     }
 }

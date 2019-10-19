@@ -1,4 +1,4 @@
-package ru.java.mentor.factory;
+package ru.java.mentor.dao;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -9,7 +9,7 @@ import ru.java.mentor.model.User;
 import java.util.List;
 
 @Repository
-public class HibernateDao implements DAO {
+public class HibernateUserDao implements UserDao {
     private SessionFactory sessionFactory;
 
     @Autowired
@@ -74,9 +74,6 @@ public class HibernateDao implements DAO {
     @Override
     public User getUserById(Long id) {
         Session session = sessionFactory.getCurrentSession();
-      /*  Query query = session.createQuery("from User where id=:id")
-                .setParameter("id", id);
-        User user = (User) query.uniqueResult();*/
         return session.get(User.class, id);
     }
 
