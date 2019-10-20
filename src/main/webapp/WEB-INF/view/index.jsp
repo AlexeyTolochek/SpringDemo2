@@ -25,7 +25,7 @@
             <td><input type='text' name='password' maxlength='50' size='20'></td>
         </tr>
     </table>
-    <input type='submit' value='Подтвердить' name='Ok'><br>
+    <input type='submit' value='Подтвердить' name='Ok' formaction="${pageContext.request.contextPath}/auth"><br>
 </form>
 
 

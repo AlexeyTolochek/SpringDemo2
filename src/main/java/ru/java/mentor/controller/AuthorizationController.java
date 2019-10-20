@@ -31,7 +31,7 @@ public class AuthorizationController {
         return "index";
     }
 
-    @PostMapping(value = "/")
+    @PostMapping(value = "/auth")
     public String authUser(@ModelAttribute("user") User user, Model model, HttpServletRequest request) {
 
        if (service.validateUser(user)) {

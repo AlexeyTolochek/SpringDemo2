@@ -30,7 +30,7 @@ public class RegistrationController {
         return "registration";
     }
 
-    @PostMapping("/reg")
+    @PostMapping("/reg/user")
     public String regUser(@ModelAttribute("user")User user, Model model) {
 
         if (service.addUser(user)) {

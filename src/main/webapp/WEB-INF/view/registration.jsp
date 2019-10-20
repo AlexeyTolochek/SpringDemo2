@@ -33,7 +33,7 @@
             <td><input type='text' name='address' maxlength='50' size='20' value="${user.address}"></td>
         </tr>
     </table>
-    <input type='submit' value='Подтвердить' name='Ok'><br>
+    <input type='submit' value='Подтвердить' name='Ok' formaction="${pageContext.request.contextPath}/reg/user"><br>
 </form>
 
 
